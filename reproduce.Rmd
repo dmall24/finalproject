@@ -1,0 +1,48 @@
+---
+title: "Reproduction"
+author: "Derek Maldonado"
+date: "12/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reproduction
+This is a reproduction of the work done by Packard and Berger (2020) on the use of the word "you" either in the sense of an object or subject in popular music and if there is a measurable connection to how much the song was liked by the participant
+
+
+```{r}
+library(dplyr)
+library(papaja)
+library(ggplot2)
+library(papaja)
+library(gt)
+library(tidyverse)
+library(glue)
+
+data1 <- read.csv(file="projectdata/YouData.csv")
+rating <- data1$m_att_song
+yoused <- data1$you
+alldata <- data.frame(rating,yoused)
+
+#alldata %>%
+#     gt() %>%
+#     tab_header(
+#         title = md("Table of the 188 values found in the dataset")
+#     )
+
+cor.test(rating, yoused)
+
+r2 <- (cor(rating,yoused))^2
+r2
+
+# the results found during the original experiment were  t(186) = 2.48, p = .014, r^2 = 0.032
+
+```
+
+When reading the data and running our own correlation test, we found our t-value at a df of 186 to be 2.4776 or 2.48, our p-value to be 0.01412, and the r-squared equal to 0.0319.
+
+We were thus successful in reproducing the second study completed in the original report.
+

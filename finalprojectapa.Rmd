@@ -1,0 +1,140 @@
+---
+title             : "Replication of Thinking of You: How second person pronouns shape cultural success"
+shorttitle        : "Replication of Thinking of YOU"
+
+author: 
+  - name          : "Derek Maldonado"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "2900 Bedford Ave, Brooklyn, 11210"
+    email         : "derekmaldonado24@gmail.com"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+
+
+affiliation:
+  - id            : "1"
+    institution   : "Brooklyn College"
+
+
+authornote: |
+  Derek Maldonado, Graduate student, experimental psychology, Brooklyn College of the City University of New York.
+
+abstract: |
+  How are you affected by the music you listen to? This experiment attempts to replicate the work done by Packard and Berger (2020) in study two where they examined the use of the word "you" in popular music. The hypothesis was that there would be a significant increase in the score a person gave a song that featured the word "you" and seemed to point to the listener more than songs from other points of view. The data showed this hypothesis to be somewhat correct in the sense the word did lead to an increase in musical enjoyment.
+
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "language, pronouns, entertainment, success"
+wordcount         : "X"
+
+bibliography      : ["myrefs.bib","r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+  Why do people enjoy some songs more than others? How is it that a specific piece of music can break through the zeitgeist and become a number one hit. An experiment done by Packard and Berger (2020) attempts to examine this phenomenon by finding a connecting piece between all the most popular music floating in people's minds.The word "you" carries a specific connotation, as it can make the audience member feel part of the song being listened to and increase their enjoyment. In their second of four studies, they directly asked participants about songs sitting in their head and how much they enjoy or dislike them.
+
+# Methods
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+There were 188 participants found through Amazon's Mechanical Turk platform. 
+
+## Material
+The study was completed through a online survey.
+
+## Procedure
+  The participants were asked to name a song they heard recently and write down the song as well as the artist that performed the song. They were then asked to rate the song based on two questions: how much they liked the song as well as how much they enjoyed listening to the song. These two answers were then aggregated into a data set.
+  They then averaged the scores of the two questions and compared those scores to the number of times the word you was used in the song.
+
+## Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+```{r}
+library(dplyr)
+library(papaja)
+library(ggplot2)
+library(papaja)
+library(gt)
+library(tidyverse)
+library(glue)
+
+data1 <- read.csv(file="projectdata/YouData.csv")
+rating <- data1$m_att_song
+yoused <- data1$you
+alldata <- data.frame(rating,yoused)
+
+cor.test(rating, yoused)
+
+r2 <- (cor(rating,yoused))^2
+r2
+
+# the results found during the original experiment were  t(186) = 2.48, p = .014, r^2 = 0.032
+
+```
+
+# Results
+The use of the word you and the participant's enjoyment of the song were found to be significantly positively correlated, r(186)=0.1787 p-value=0.01412.
+
+# Discussion
+We successfully replicated study two and showed there to be statistically significant results. This shows there to be some possible correlation between the use of you and a person's enjoyment of a song. The big limitation of this second part of the study is that it is based only on songs a person is currently thinking of, meaning it is most likely focused on very popular songs already. The other aspects of the study do cover the other areas of musical understanding, create a full picture. It can be found in the references below.
+
+# Power Analysis
+```{r}
+library(pwr)
+library(ggplot2)
+rsizes <- seq(0,1,0.05)
+power <- sapply(rsizes,
+          FUN = function(x) {
+          pwr.r.test(n=188,
+           r=x,
+           sig.level=.05,
+           alternative="two.sided")$power})
+plotofr <- data.frame(rsizes,power)
+
+ggplot(plotofr, aes(rsizes,
+                    power))+
+  geom_point()+
+  geom_line()
+
+```
+
+We completed a power analysis with a n=188 and examining r values between 0 and 1 at steps of 0.05 to give us a clear curve. The analysis shows that with a large n, this experiment inherently has a high amount of power. As seen, at a r-value = 0.17 the expected power is around 0.75. With this, the experimenter can understandably reject the null with a p-value of 0.014, much lower than the 0.05 significance level in the power analysis.
+
+This experiment can reach a higher level of power only by increasing the n. With it being a correlational study, an increase in n should increase the power on principle as well as increase the acquired r-value if there is in fact a correlation as proposed.
+
+
+\newpage
+
+# References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup
