@@ -23,7 +23,7 @@ authornote: |
   Derek Maldonado, Graduate student, experimental psychology, Brooklyn College of the City University of New York.
 
 abstract: |
-  How are you affected by the music you listen to? This experiment attempts to replicate the work done by Packard and Berger (2020) in study two where they examined the use of the word "you" in popular music. The hypothesis was that there would be a significant increase in the score a person gave a song that featured the word "you" and seemed to point to the listener more than songs from other points of view. The data showed this hypothesis to be somewhat correct in the sense the word did lead to an increase in musical enjoyment.
+  How are you affected by the music you listen to? This experiment attempts to replicate the work done by @PackardBergerYou in study two where they examined the use of the word "you" in popular music. The hypothesis was that there would be a significant increase in the score a person gave a song that featured the word "you" and seemed to point to the listener more than songs from other points of view. The data showed this hypothesis to be somewhat correct in the sense the word did lead to an increase in musical enjoyment.
 
   
   <!-- https://tinyurl.com/ybremelq -->
